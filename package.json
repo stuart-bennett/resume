@@ -1,0 +1,15 @@
+{
+  "name": "resume",
+  "version": "0.0.0",
+  "description": "Interactive Web-based resume of Stuart Bennett",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "private": true,
+  "author": "Stuart Bennett",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
