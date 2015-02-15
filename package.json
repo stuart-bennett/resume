@@ -12,6 +12,8 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-clean": "^0.3.1",
-    "gulp-ruby-sass": "^1.0.0-alpha.3"
+    "gulp-ruby-sass": "^1.0.0-alpha.3",
+    "babelify": "^5.0.3",
+    "gulp-browserify": "^0.5.1"
   }
 }
