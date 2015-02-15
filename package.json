@@ -10,6 +10,8 @@
   "author": "Stuart Bennett",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.8.11"
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-ruby-sass": "^1.0.0-alpha.3"
   }
 }
