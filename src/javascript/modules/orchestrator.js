@@ -21,7 +21,9 @@ class Orchestrator {
             .from(this.document.getElementsByClassName("item"))
             .scan(0, (acc, x) => {
                 x.dataset.id = acc;
-                x.style.opacity = 0;
+                x.style.opacity = 0.5;
+                x.style.position = "relative";
+                x.style.left = "300px";
                 return acc + 1;
             })
             .subscribe(x => x);
@@ -42,7 +44,6 @@ class Orchestrator {
     }
 
     getElement(id) {
-        console.log(id);
         return this.document.querySelector("[data-id='" + id + "']");
     }
 
@@ -57,13 +58,13 @@ class Orchestrator {
     forward() {
         var element = this.getElement(this.item++);
         this.lock();
-        Velocity(element, { opacity: 1 }, 100).then(() => this.unlock());
+        Velocity(element, { opacity: 1, left: 0 }, 100).then(() => this.unlock());
     }
 
     backward() {
         var element = this.getElement(--this.item);
         this.lock();
-        Velocity(element, { opacity: 0 }, 100).then(() => this.unlock());
+        Velocity(element, { left: 200 }, 100).then(() => this.unlock());
     }
 };
 
