@@ -3,12 +3,29 @@
 import Rx from "../../../bower_components/rxjs/dist/rx.lite";
 import Velocity from "../../../bower_components/velocity/velocity";
 
+class Item {
+    constructor($el) {
+        this.$ = $el;
+    }
+}
+
+class Test {
+    constuctor(prev, current, next) {
+        this.prev = prev;
+        this.current = current;
+        this.next = next;
+    }
+}
+
 class Orchestrator {
 
     constructor(window, document) {
         this.window = window;
         this.document = document;
-        this.item = 0;
+        this.item = 1;
+        this.items = [];
+        this.currentItem = null;
+        this.progress = new Rx.Subject();
     }
 
     start() {
@@ -17,16 +34,7 @@ class Orchestrator {
     }
 
     processItems() {
-        var items = Rx.Observable
-            .from(this.document.getElementsByClassName("item"))
-            .scan(0, (acc, x) => {
-                x.dataset.id = acc;
-                x.style.opacity = 0.5;
-                x.style.position = "relative";
-                x.style.left = "300px";
-                return acc + 1;
-            })
-            .subscribe(x => x);
+        this.items = this.document.querySelectorAll(".item, .frame");
     }
 
     setUpInputHandlers() {
@@ -55,16 +63,30 @@ class Orchestrator {
         this.isLocked = false;
     }
 
-    forward() {
-        var element = this.getElement(this.item++);
+    isScene(item) {
+        return item.classList.contains('frame');
+    }
+
+    handleItem(item, isBackwards = false) {
+        this.currentItem = item;
         this.lock();
-        Velocity(element, { opacity: 1, left: 0 }, 100).then(() => this.unlock());
+
+        let args = {
+            item: this.currentItem,
+            isBackwards: isBackwards,
+            isScene: this.isScene(this.currentItem)
+        };
+
+        this.progress.onNext(args);
+    }
+
+    forward() {
+        this.handleItem(this.items[this.item++]);
     }
 
     backward() {
-        var element = this.getElement(--this.item);
-        this.lock();
-        Velocity(element, { left: 200 }, 100).then(() => this.unlock());
+        console.log("kfjdls");
+        this.handleItem(this.items[--this.item], true);
     }
 };
 

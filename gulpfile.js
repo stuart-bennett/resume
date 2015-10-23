@@ -30,7 +30,11 @@ gulp.task("js", ["clean"], function () {
         .pipe(gulp.dest(buildDir + "/js"));
 });
 
-gulp.task("build", ["clean", "sass", "js"], function() {
+gulp.task("images", ["clean", "sass", "js"], function () {
+    return gulp.src(srcDir + "/images/*").pipe(gulp.dest(buildDir + "/images"));
+});
+
+gulp.task("build", ["clean", "sass", "js", "images"], function() {
 });
 
 gulp.task("default", ["build"]);
