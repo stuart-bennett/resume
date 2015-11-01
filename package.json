@@ -10,12 +10,13 @@
   "author": "Stuart Bennett",
   "license": "ISC",
   "devDependencies": {
+    "babelify": "^5.0.3",
     "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.1",
     "gulp-ruby-sass": "^1.0.0-alpha.3",
-    "babelify": "^5.0.3",
-    "gulp-browserify": "^0.5.1",
-    "node-reset-scss": "^1.0.1",
-    "mocha": "^2.1.0"
+    "gulp-task-loader": "^1.2.3",
+    "mocha": "^2.1.0",
+    "node-reset-scss": "^1.0.1"
   }
 }
