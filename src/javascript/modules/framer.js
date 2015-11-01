@@ -4,6 +4,10 @@ import Rx from "../../../bower_components/rxjs/dist/rx.lite";
 
 class Framer {
 
+    /**
+     *  Provides functionality to process a frame. (Processes child elements)
+     *  @constructor
+     */
     constructor (document) {
         this.document = document;
     }
