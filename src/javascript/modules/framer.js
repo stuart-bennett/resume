@@ -1,6 +1,7 @@
 "use strict";
 
-import Rx from "../../../bower_components/rxjs/dist/rx.lite";
+import Rx from "../../../node_modules/rx/dist/rx.lite";
+import _ from "../../../node_modules/lodash/collection";
 
 class Framer {
 
@@ -8,17 +9,25 @@ class Framer {
      *  Provides functionality to process a frame. (Processes child elements)
      *  @constructor
      */
-    constructor (document) {
+    constructor ($frame, document) {
+        this.$ = $frame;
         this.document = document;
+
+        // Make frame element fill the viewport vertically
+        this.setFullHeight = () => {
+            let viewportHeight = this.document.documentElement.clientHeight;
+            this.$.style.height = viewportHeight + "px";
+        };
+
+        this.createItems = function () {
+            let $items = this.$.querySelectorAll("[data-order]");
+            this.items = _.sortBy($items, x => x.getAttribute("data-order"));
+        };
     }
 
     init() {
-        var viewportHeight = this.document.documentElement.clientHeight,
-            frames = Rx.Observable.from(document.getElementsByClassName("frame"));
-
-        frames.subscribe(x => {
-            x.style.height = viewportHeight + "px";
-        });
+        this.setFullHeight();
+        this.createItems();
     }
 
 

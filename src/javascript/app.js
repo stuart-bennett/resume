@@ -2,7 +2,11 @@ import Velocity from "../../bower_components/velocity/velocity";
 import Framer from "./modules/framer";
 import Orchestrator from "./modules/orchestrator";
 
-let framer = new Framer(document).init();
+let frames = document.getElementsByClassName("frame");
+frames.forEach($ => {
+    framer = new Framer($, this.document).init();
+});
+
 let orchestrator = new Orchestrator(window, document);
 
 orchestrator.progress.filter(x => x.isScene).subscribe(x => {

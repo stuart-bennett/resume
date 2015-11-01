@@ -5,3 +5,5 @@ var gulp = require("gulp"),
 module.exports = function () {
     return gulp.src(settings.dirs.build).pipe(clean());
 };
+
+module.exports.dependencies = ["test"];
