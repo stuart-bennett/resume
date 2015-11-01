@@ -6,4 +6,4 @@ module.exports = function () {
     return gulp.src(settings.dirs.build).pipe(clean());
 };
 
-module.exports.dependencies = ["test"];
+// module.exports.dependencies = ["test"];

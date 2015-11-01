@@ -1,54 +1,23 @@
 "use strict"
 
-import Rx from "../../../bower_components/rxjs/dist/rx.lite";
+import Rx from "../../../node_modules/rx/dist/rx.lite";
 import Velocity from "../../../bower_components/velocity/velocity";
-
-class Item {
-    constructor($el) {
-        this.$ = $el;
-    }
-}
-
-class Test {
-    constuctor(prev, current, next) {
-        this.prev = prev;
-        this.current = current;
-        this.next = next;
-    }
-}
+import { directions } from "../symbols";
 
 class Orchestrator {
 
-    constructor(window, document) {
+    /*
+     *  @constructor
+     */
+    constructor(navigator, window, document) {
+        this.navigator = navigator;
         this.window = window;
         this.document = document;
-        this.item = 1;
-        this.items = [];
-        this.currentItem = null;
         this.progress = new Rx.Subject();
     }
 
     start() {
-        this.processItems();
-        this.setUpInputHandlers();
-    }
-
-    processItems() {
-        this.items = this.document.querySelectorAll(".item, .frame");
-    }
-
-    setUpInputHandlers() {
-        var scrolls     = Rx.Observable.fromEvent(this.window, "wheel").sample(1500),
-            keys        = Rx.Observable.fromEvent(this.window, "keyup"),
-            mouseFwds   = scrolls.filter(x => x.wheelDeltaY < 0),
-            mouseBkwds  = scrolls.filter(x => x.wheelDeltaY > 0),
-            keyFwds     = keys.filter(x => x.keyIdentifier === "Down" || x.keyIdentifier === "Right"),
-            keyBkwds    = keys.filter(x => x.keyIdentifier === "Up" || x.keyIdentifier === "Left"),
-            fwds        = Rx.Observable.merge(mouseFwds, keyFwds),
-            bkwds       = Rx.Observable.merge(mouseBkwds, keyBkwds);
-
-        fwds.subscribe(() => this.forward());
-        bkwds.subscribe(() => this.backward());
+        this.navigator.movements.filter(x => x.direction === directions.forward).subscribe(_ => console.log("forwards"));
     }
 
     getElement(id) {
@@ -80,14 +49,7 @@ class Orchestrator {
         this.progress.onNext(args);
     }
 
-    forward() {
-        this.handleItem(this.items[this.item++]);
-    }
 
-    backward() {
-        console.log("kfjdls");
-        this.handleItem(this.items[--this.item], true);
-    }
 };
 
 export default Orchestrator;

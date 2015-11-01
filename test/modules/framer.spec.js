@@ -27,5 +27,5 @@ describe("Framer", () => {
             framer.items[1].textContent.should.equal("Second");
             framer.items[2].textContent.should.equal("Third");
         });
-    })
+    });
 });
