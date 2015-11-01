@@ -1,53 +1,14 @@
 @import "../../node_modules/node-reset-scss/scss/_reset";
 @import "vendor/bourbon/_bourbon";
 
-$images-dir: "../images";
-$color-black--lightTint: hsla(0, 45%, 5%, 0.25);
+@import "components/_utilities";
 
-$fontSize--base:   13;
-$fontSize--large:  19;
-$fontSize--larger: 25;
+@import "pages/_introduction";
 
+html {
+    font-size: 62.5%;
+}
 
 body {
     overflow: hidden;
-}
-
-.section {
-
-}
-
-.section:nth-child(2) {
-    background: #999;
-}
-
-
-.introduction {
-    @media (min-device-width:321px) {
-        background: url('#{$images-dir}/desk.jpeg') no-repeat;
-    }
-}
-
-.lift {
-    background-color: $color-black--lightTint;
-}
-
-.block {
-    display: inline-block;
-}
-
-
-$air-paddingSize--medium: 3;
-.air {
-    font-size: rem($fontSize--larger);
-    padding: rem($air-paddingSize--medium);
-}
-
-$gap-marginSize--medium: 3;
-.gap {
-    margin: rem($gap-marginSize--medium);
-}
-
-.center {
-    margin: 0 auto;
 }

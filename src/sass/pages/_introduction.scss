@@ -1,0 +1,25 @@
+/*
+ *  Name: Introduction Page
+ *  Description: Uses a dark theme
+ */
+
+@import "../_settings";
+@import "../components/_profile";
+
+.introduction {
+
+    @include apply-theme("dark");
+
+    padding: 3rem;
+    text-align: center;
+
+    .page-title {
+        text-transform: uppercase;
+        font-family: $font-sans-serif;
+        font-size: 4.4rem;
+        line-height: 6.4rem;
+        font-weight: 100;
+        margin: 0 auto;
+    }
+
+}

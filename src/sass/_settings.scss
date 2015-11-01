@@ -1,0 +1,34 @@
+@import "vendor/neat/_neat";
+
+// Fonts
+$font-serif: "Playfair Display";
+$font-sans-serif: "Roboto";
+
+// Theme Colors
+//    Name | Background | Body text | Heading #1
+$themes: (
+    ( dark,  #1B272F,     #ADC7BB,    #F29C00 ),
+    ( light, #9DBDC6,     #272F32,    #272F32 )
+);
+
+// Light
+//$color-grey: #DAEAEF;
+//$color-blue: #9DBDC6;
+//$color-blue-dark: #272F32;
+//$color-red: #FF3D2E;
+
+$breakpoint-1: new-breakpoint(max-width 440px);
+$breakpoint-2: new-breakpoint(min-width 441px max-width 1920px);
+
+
+@mixin apply-theme($theme-name) {
+    @each $theme in $themes {
+        @if $theme-name == nth($theme, 1) {
+
+            background-color: nth($theme, 2);
+
+            .page-title   { color: nth($theme, 4); }
+            .page-content { color: nth($theme, 3); }
+        }
+    }
+}
