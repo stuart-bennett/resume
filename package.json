@@ -24,6 +24,7 @@
     "node-reset-scss": "^1.0.1"
   },
   "dependencies": {
-    "rx": "^4.0.6"
+    "rx": "^4.0.6",
+    "velocity-animate": "^1.2.3"
   }
 }

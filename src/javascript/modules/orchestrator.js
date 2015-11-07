@@ -1,7 +1,7 @@
 "use strict"
 
 import Rx from "../../../node_modules/rx/dist/rx.lite";
-import Velocity from "../../../bower_components/velocity/velocity";
+import Velocity from "../../../node_modules/velocity-animate/velocity";
 import { directions } from "../symbols";
 
 class Orchestrator {
