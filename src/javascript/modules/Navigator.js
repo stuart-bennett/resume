@@ -22,8 +22,8 @@ class Navigator {
                 fwds        = Rx.Observable.merge(mouseFwds, keyFwds),
                 bkwds       = Rx.Observable.merge(mouseBkwds, keyBkwds);
 
-            fwds.subscribe(_ => this.movements.onNext({ direction: directions.forward }));
-            bkwds.subscribe(_ => this.movements.onNext({ direction: directions.backward }));
+            fwds.subscribe(this.goForward.bind(this));
+            bkwds.subscribe(this.goBackward.bind(this));
         };
     }
 
@@ -31,8 +31,13 @@ class Navigator {
         this.setUpInputHandlers();
     }
 
-    goForward() { }
-    goBackward() { }
+    goForward() {
+        this.movements.onNext({ direction: directions.forward })
+    }
+
+    goBackward() {
+        this.movements.onNext({ direction: directions.backward })
+    }
 
 }
 

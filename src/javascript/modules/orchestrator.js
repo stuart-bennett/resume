@@ -9,27 +9,35 @@ class Orchestrator {
     /*
      *  @constructor
      */
-    constructor(navigator, window, document) {
+    constructor(navigator, window, document, frames) {
         this.navigator = navigator;
         this.window = window;
         this.document = document;
         this.progress = new Rx.Subject();
+        this.frames = frames;
+        this.activeFrame = null;
     }
 
     start() {
-        this.navigator.movements.filter(x => x.direction === directions.forward).subscribe(_ => console.log("forwards"));
+        this.activeFrame = this.frames[0];
+        this.currentItem = this.activeFrame.items[0];
+        this.navigator.movements.filter(x => x.direction === directions.forward).subscribe(this.goForward.bind(this));
+        this.navigator.movements.filter(x => x.direction === directions.backward).subscribe(this.goBackward.bind(this));
+    }
+
+    goForward () {
+        var nextItem = this.currentItem.position + 1;
+        if (this.activeFrame && this.activeFrame.hasElementFor(nextItem)) {
+            this.currentItem = this.activeFrame.getItem(nextItem);
+        }
+    }
+
+    goBackward () {
+
     }
 
     getElement(id) {
         return this.document.querySelector("[data-id='" + id + "']");
-    }
-
-    lock() {
-        this.isLocked = true;
-    }
-
-    unlock() {
-        this.isLocked = false;
     }
 
     isScene(item) {
@@ -38,7 +46,6 @@ class Orchestrator {
 
     handleItem(item, isBackwards = false) {
         this.currentItem = item;
-        this.lock();
 
         let args = {
             item: this.currentItem,

@@ -6,14 +6,15 @@ import Navigator from "./modules/Navigator";
 import Orchestrator from "./modules/orchestrator";
 
 let $frames = document.getElementsByClassName("frame");
+let frames = [];
 for (let $frame of $frames) {
-    framer = new Frame($frame, document).init();
+    frames.push(new Frame($frame, document).init());
 }
 
 let nav = new Navigator(window);
 nav.init();
 
-let orchestrator = new Orchestrator(nav, window, document);
+let orchestrator = new Orchestrator(nav, window, document, frames);
 
 /*
 orchestrator.forwards.filter(x => x.isScene).subscribe(x => {

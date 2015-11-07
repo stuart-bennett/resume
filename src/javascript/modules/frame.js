@@ -21,7 +21,9 @@ class Frame {
 
         this.createItems = function () {
             let $items = this.$.querySelectorAll("[data-order]");
-            this.items = _.sortBy($items, x => x.getAttribute("data-order"));
+            this.items = _
+                .sortBy($items, x => x.getAttribute("data-order"))
+                .map(x => ({ position: parseInt(x.getAttribute("data-order")), $: x }));
         };
     }
 
@@ -30,7 +32,13 @@ class Frame {
         this.createItems();
     }
 
+    getItem (position) {
+        return _.find(this.items, x => x.position === position);
+    }
 
+    hasElementFor (position) {
+        return typeof this.getItem(position) !== "undefined";
+    }
 }
 
 export default Frame;

@@ -8,6 +8,7 @@ const html = `
 let test = new (require("../_utils/test-wrapper"))(),
     assert = require("assert"),
     should = require("chai").should(),
+    Frame = require("../../src/javascript/modules/Frame"),
     Navigator = require("../../src/javascript/modules/Navigator"),
     Orchestrator = require("../../src/javascript/modules/Orchestrator");
 
@@ -18,15 +19,18 @@ describe("Orchestrator", () => {
             // Arrange
             test.useHtml(html);
             let navigator = new Navigator(window);
+            let frame = new Frame(document.querySelector(".frame"), document);
+            frame.init();
+            let frames = [ frame ];
             navigator.init();
-            let orchestrator = new Orchestrator(navigator, document, window);
+            let orchestrator = new Orchestrator(navigator, document, window, frames);
 
             // Act
             orchestrator.start();
             navigator.goForward();
 
             // assert
-            orchestrator.currentItem.textContent.should.equal("Second");
+            orchestrator.currentItem.$.textContent.should.equal("Second");
         });
     });
 });
