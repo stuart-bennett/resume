@@ -27,8 +27,17 @@ class Orchestrator {
 
     goForward () {
         var nextItem = this.currentItem.position + 1;
+
         if (this.activeFrame && this.activeFrame.hasElementFor(nextItem)) {
             this.currentItem = this.activeFrame.getItem(nextItem);
+
+            let args = {
+                item: this.currentItem.$,
+                isBackwards: false,
+                isScene: false
+            };
+
+            this.progress.onNext(args);
         }
     }
 

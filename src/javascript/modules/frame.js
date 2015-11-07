@@ -1,7 +1,7 @@
 "use strict";
 
 import Rx from "../../../node_modules/rx/dist/rx.lite";
-import _ from "../../../node_modules/lodash/collection";
+import _ from "../../../node_modules/lodash";
 
 class Frame {
 
@@ -21,9 +21,12 @@ class Frame {
 
         this.createItems = function () {
             let $items = this.$.querySelectorAll("[data-order]");
-            this.items = _
-                .sortBy($items, x => x.getAttribute("data-order"))
-                .map(x => ({ position: parseInt(x.getAttribute("data-order")), $: x }));
+            this.items = _.chain($items)
+                .groupBy(x => x.getAttribute("data-order"))
+                .transform((acc, value, key) => acc.push({ position: parseInt(key), $: value }), [])
+                .sortBy(x => x.position)
+                .value();
+            console.log(this.items);
         };
     }
 

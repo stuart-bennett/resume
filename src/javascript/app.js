@@ -8,22 +8,24 @@ import Orchestrator from "./modules/orchestrator";
 let $frames = document.getElementsByClassName("frame");
 let frames = [];
 for (let $frame of $frames) {
-    frames.push(new Frame($frame, document).init());
+    let frame = new Frame($frame, document);
+    frame.init()
+    frames.push(frame);
 }
 
 let nav = new Navigator(window);
 nav.init();
 
+console.log(frames);
 let orchestrator = new Orchestrator(nav, window, document, frames);
 
-/*
-orchestrator.forwards.filter(x => x.isScene).subscribe(x => {
-    Velocity(x.item, "scroll", { duration: 600 });
+orchestrator.progress.filter(x => x.isScene).subscribe(x => {
+    Velocity(x.item, { opacity: 1}, 600);
 });
 
 orchestrator.progress.filter(x => !x.isScene).subscribe(x => {
-    Velocity(x.item, { marginLeft: x.isBackwards ? 0 : 350 + "px" }, 100);
+    Velocity(x.item, { opacity: 1}, 600);
 });
-*/
+
 
 orchestrator.start();

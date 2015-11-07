@@ -29,8 +29,8 @@ describe("Orchestrator", () => {
             orchestrator.start();
             navigator.goForward();
 
-            // assert
-            orchestrator.currentItem.$.textContent.should.equal("Second");
+            // assert            
+            orchestrator.currentItem.$[0].textContent.should.equal("Second");
         });
     });
 });
