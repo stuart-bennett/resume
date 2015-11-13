@@ -1,6 +1,7 @@
 "use strict";
 
 import Rx from "../../../node_modules/rx/dist/rx.lite";
+import AnimationHandler from "./AnimationHandler";
 import _ from "../../../node_modules/lodash";
 
 class Frame {
@@ -23,16 +24,22 @@ class Frame {
             let $items = this.$.querySelectorAll("[data-order]");
             this.items = _.chain($items)
                 .groupBy(x => x.getAttribute("data-order"))
-                .transform((acc, value, key) => acc.push({ position: parseInt(key), $: value }), [])
+                .transform((acc, value, key) => acc.push({
+                    position: parseInt(key),
+                    $: value,
+                    animationHandler: new AnimationHandler(value) }), [])
                 .sortBy(x => x.position)
                 .value();
-            console.log(this.items);
         };
     }
 
     init() {
         this.setFullHeight();
         this.createItems();
+        this.setupAnimations();
+    }
+
+    setupAnimations() {
     }
 
     getItem (position) {
