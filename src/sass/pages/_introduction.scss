@@ -22,4 +22,15 @@
         margin: 0 auto;
     }
 
+    .on {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .a-fade.off {
+        opacity: 0;
+    }
+
+    .a-pop.off {
+        transform: scale(0);
+    }
 }

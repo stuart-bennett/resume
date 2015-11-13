@@ -19,6 +19,7 @@ class Orchestrator {
     }
 
     start() {
+        console.log(this.frames);
         this.activeFrame = this.frames[0];
         this.currentItem = this.activeFrame.items[0];
         this.navigator.movements.filter(x => x.direction === directions.forward).subscribe(this.goForward.bind(this));
@@ -26,19 +27,31 @@ class Orchestrator {
     }
 
     goForward () {
-        var nextItem = this.currentItem.position + 1;
+        let nextItem = this.currentItem.position + 1,
+            args = {};
 
         if (this.activeFrame && this.activeFrame.hasElementFor(nextItem)) {
             this.currentItem = this.activeFrame.getItem(nextItem);
 
-            let args = {
+            args = {
                 item: this.currentItem.$,
+                animator: this.currentItem.animationHandler,
                 isBackwards: false,
                 isScene: false
             };
 
-            this.progress.onNext(args);
+        } else {
+            this.activeFrame = this.frames[1];
+            this.currentItem = this.activeFrame.items[0];
+
+            args = {
+                item: this.activeFrame.$,
+                isBackwards: false,
+                isScene: true
+            };
         }
+        
+        this.progress.onNext(args);
     }
 
     goBackward () {

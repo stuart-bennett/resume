@@ -20,11 +20,11 @@ console.log(frames);
 let orchestrator = new Orchestrator(nav, window, document, frames);
 
 orchestrator.progress.filter(x => x.isScene).subscribe(x => {
-    Velocity(x.item, { opacity: 1}, 600);
+    Velocity(x.item, "scroll", { duration: 350, easing: "ease-in-out" });
 });
 
-orchestrator.progress.filter(x => !x.isScene).subscribe(x => {
-    Velocity(x.item, { opacity: 1}, 600);
+orchestrator.progress.filter(x => !x.isScene && x.animator).subscribe(x => {
+    x.animator.transition();
 });
 
 

@@ -1,6 +1,6 @@
 const html = `
     <section class="frame">
-        <p data-order="1">First</p>
+        <p data-order="1" data-anim="fade">First</p>
         <p data-order="3">Third</p>
         <p data-order="2">Second</p>
     </section>`;
@@ -14,7 +14,7 @@ let test = new (require("../_utils/test-wrapper"))(),
 
 describe("Orchestrator", () => {
     describe ("when moving forwards", () => {
-        it("should advance current item", () => {
+        it("should advance current item and run transitions", () => {
 
             // Arrange
             test.useHtml(html);
@@ -29,7 +29,7 @@ describe("Orchestrator", () => {
             orchestrator.start();
             navigator.goForward();
 
-            // assert            
+            // assert
             orchestrator.currentItem.$[0].textContent.should.equal("Second");
         });
     });
