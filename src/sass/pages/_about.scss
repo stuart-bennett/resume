@@ -1,0 +1,23 @@
+/*
+ *  Name: Introduction Page
+ *  Description: Uses a light theme
+ */
+
+@import "../_settings";
+@import "../components/_profile";
+
+.about {
+    @include apply-theme("light");
+
+    .page-title {
+        font-size: 4.4rem;
+    }
+
+    .page-subtitle {
+        font-size: 4rem;
+    }
+
+    .page-content {
+        font-size: 2.3rem;
+    }
+}

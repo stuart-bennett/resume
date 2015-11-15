@@ -3,6 +3,7 @@
 // Fonts
 $font-serif: "Playfair Display";
 $font-sans-serif: "Roboto";
+$font-lobster: "Lobster Two";
 
 // Theme Colors
 //    Name | Background | Body text | Heading #1
@@ -29,6 +30,7 @@ $breakpoint-2: new-breakpoint(min-width 441px max-width 1920px);
 
             .page-title   { color: nth($theme, 4); }
             .page-content { color: nth($theme, 3); }
+            .page-content .mute {color: lighten(nth($theme, 2), 3%) }
 
             .page-title .a-mute.off { color: lighten(nth($theme, 2), 3%) }
         }
