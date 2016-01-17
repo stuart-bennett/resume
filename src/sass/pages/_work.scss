@@ -10,7 +10,6 @@
 
     @include apply-theme("other");
 
-    padding: 3rem;
     text-align: center;
 
     .page-title {
@@ -21,5 +20,26 @@
         font-weight: 100;
         margin: 0 auto;
         transition: all 0.3s ease-in-out;
+    }
+
+    .split-item:first-child {
+        text-align: left;
+    }
+
+    .split-item:last-child {
+        position: relative;
+        height: 640px;
+    }
+
+    #work-map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+
+        canvas {
+            position: relative;
+            left: 0; // Mapbox GL appears to be offset from the left?
+        }
     }
 }
