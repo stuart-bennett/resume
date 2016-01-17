@@ -7,8 +7,8 @@ import Orchestrator from "./modules/orchestrator";
 
 let $frames = document.getElementsByClassName("frame");
 let frames = [];
-for (let $frame of $frames) {
-    let frame = new Frame($frame, document);
+for (var i = 0; i < $frames.length; i++) {
+    let frame = new Frame($frames[i], document, i);
     frame.init()
     frames.push(frame);
 }
@@ -19,6 +19,7 @@ nav.init();
 let orchestrator = new Orchestrator(nav, window, document, frames);
 
 orchestrator.progress.filter(x => x.isScene).subscribe(x => {
+    console.log(x);
     Velocity(x.item, "scroll", { duration: 350, easing: "ease-in-out" });
 });
 

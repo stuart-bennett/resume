@@ -10,9 +10,10 @@ class Frame {
      *  Provides functionality to process a frame. (Processes child elements)
      *  @constructor
      */
-    constructor ($frame, document) {
+    constructor ($frame, document, position) {
         this.$ = $frame;
         this.document = document;
+        this.position = position;
 
         // Make frame element fill the viewport vertically
         this.setFullHeight = () => {

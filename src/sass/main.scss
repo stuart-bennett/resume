@@ -1,10 +1,13 @@
 @import "../../node_modules/node-reset-scss/scss/_reset";
 @import "vendor/bourbon/_bourbon";
 
+@import "_transitions";
+
 @import "components/_utilities";
 
 @import "pages/_introduction";
 @import "pages/_about";
+@import "pages/_work";
 
 
 html {

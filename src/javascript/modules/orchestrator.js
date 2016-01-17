@@ -41,7 +41,7 @@ class Orchestrator {
             };
 
         } else {
-            this.activeFrame = this.frames[1];
+            this.activeFrame = this.frames[this.activeFrame.position + 1];
             this.currentItem = this.activeFrame.items[0];
 
             args = {
@@ -50,7 +50,7 @@ class Orchestrator {
                 isScene: true
             };
         }
-        
+
         this.progress.onNext(args);
     }
 

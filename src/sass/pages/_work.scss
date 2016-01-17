@@ -1,14 +1,14 @@
 /*
- *  Name: Introduction Page
- *  Description: Uses a dark theme
+ *  Name: Work Page
+ *  Description: Uses "other" theme
  */
 
 @import "../_settings";
 @import "../components/_profile";
 
-.introduction {
+.work {
 
-    @include apply-theme("dark");
+    @include apply-theme("other");
 
     padding: 3rem;
     text-align: center;
