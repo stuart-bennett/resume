@@ -20,10 +20,23 @@
         line-height: 6.4rem;
         font-weight: 100;
         margin: 0 auto;
+        transition: all 0.3s ease-in-out;
     }
 
     .on {
         transition: all 0.3s ease-in-out;
+    }
+
+    .a-completion {
+        &.off {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        &.on {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     .a-fade.off {

@@ -16,7 +16,6 @@ for (let $frame of $frames) {
 let nav = new Navigator(window);
 nav.init();
 
-console.log(frames);
 let orchestrator = new Orchestrator(nav, window, document, frames);
 
 orchestrator.progress.filter(x => x.isScene).subscribe(x => {

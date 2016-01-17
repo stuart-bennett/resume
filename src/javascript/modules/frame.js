@@ -36,10 +36,6 @@ class Frame {
     init() {
         this.setFullHeight();
         this.createItems();
-        this.setupAnimations();
-    }
-
-    setupAnimations() {
     }
 
     getItem (position) {
