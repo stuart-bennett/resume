@@ -21,6 +21,13 @@ class Frame {
             this.$.style.height = viewportHeight + "px";
         };
 
+        this.parseEvents = function($els) {
+            return _.chain($els)
+                .filter($ => $.hasAttribute("data-event"))
+                .map($ => JSON.parse($.getAttribute("data-event")))
+                .value();
+        };
+
         this.createItems = function () {
             let $items = this.$.querySelectorAll("[data-order]");
             this.items = _.chain($items)
@@ -28,7 +35,8 @@ class Frame {
                 .transform((acc, value, key) => acc.push({
                     position: parseInt(key),
                     $: value,
-                    animationHandler: new AnimationHandler(value) }), [])
+                    animationHandler: new AnimationHandler(value),
+                    evt: this.parseEvents(value) }), [])
                 .sortBy(x => x.position)
                 .value();
         };

@@ -14,6 +14,7 @@ class Orchestrator {
         this.window = window;
         this.document = document;
         this.progress = new Rx.Subject();
+        this.events = new Rx.Subject();
         this.frames = frames;
         this.activeFrame = null;
     }
@@ -32,6 +33,12 @@ class Orchestrator {
 
         if (this.activeFrame && this.activeFrame.hasElementFor(nextItem)) {
             this.currentItem = this.activeFrame.getItem(nextItem);
+
+            if (this.currentItem.evt.length > 0) {
+                for (let evt of this.currentItem.evt) {
+                    this.events.onNext(evt);
+                }
+            }
 
             args = {
                 item: this.currentItem.$,
