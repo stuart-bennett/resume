@@ -221,3 +221,4 @@ node_modules
 _site
 css
 .build
+.settings.json
