@@ -27,8 +27,8 @@ nav.init();
 let orchestrator = new Orchestrator(nav, window, document, frames);
 
 orchestrator.events.subscribe(x => {
-  console.log(x);
   map.markLocation(x.args.lat, x.args.long);
+  map.focusOn(x.args.lat, x.args.long);
 });
 
 orchestrator.progress.filter(x => x.isScene).subscribe(x => {

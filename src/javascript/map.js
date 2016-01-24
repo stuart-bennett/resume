@@ -55,6 +55,14 @@ class Map {
     console.log(data);
     this.map.getSource("single-point").setData(data);
   }    
+  
+  focusOn(lat, lng) { 
+    this.map.flyTo({
+      center: [
+	lng, lat
+      ]
+    });
+}
 }
 
 export default Map;
