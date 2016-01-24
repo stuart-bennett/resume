@@ -7,11 +7,10 @@ import Orchestrator from "./modules/orchestrator";
 import settings from "./.settings.json";
 import Map from "./map";
 
-console.log(settings);
+let map = new Map(
+  document.querySelector("#work-map"),
+  settings.mapbox.accessToken);
 
-let map = new (
-  document.querySelector("#map"),
-  mapboxAccessToken)
 map.init();
 
 let $frames = document.getElementsByClassName("frame");
@@ -27,7 +26,9 @@ nav.init();
 
 let orchestrator = new Orchestrator(nav, window, document, frames);
 
-orchestrator.events.filter(x => {
+orchestrator.events.subscribe(x => {
+  console.log(x);
+  map.markLocation(x.args.lat, x.args.long);
 });
 
 orchestrator.progress.filter(x => x.isScene).subscribe(x => {
