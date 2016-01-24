@@ -43,11 +43,13 @@ class Map {
   }
 
   markLocation(lat, lng) {
+    console.log("Lat: " + lat);
+    console.log("Long: " + lng);
     let data = {
       "type": "Feature",
       "geometry": {
 	"type": "Point",
-	"coordinates": [lat, lng]
+	"coordinates": [lng, lat]
       }
     };
     console.log(data);
